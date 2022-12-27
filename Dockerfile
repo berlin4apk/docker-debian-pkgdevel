@@ -28,7 +28,7 @@ RUN echo "build /etc/apt/sources.list.d/deb-src.list, and apt-get install" \
     && apt-get update && apt-get install -qqy --no-install-recommends \
            build-essential dpkg-dev fakeroot devscripts equivs lintian quilt \
            curl vim sudo "bsdtar|libarchive-tools" \
-           wget ccache distcc busybox apt-file debian-keyring \
+           wget ccache distcc busybox apt-file debian-keyring redis-tools \
     && rm -rf /var/lib/apt/lists/*
 
 #RUN cat > /usr/local/etc/ccache.conf << __EOF__
