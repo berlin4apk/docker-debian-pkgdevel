@@ -25,7 +25,7 @@ jobs:
           #- experimental
           #- sid
           - bookworm
-          - bullseye
+#          - bullseye
           #- buster
           #- buster-20220801
 
