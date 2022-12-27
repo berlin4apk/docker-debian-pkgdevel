@@ -17,11 +17,11 @@ RUN echo "deb-src http://deb.debian.org/debian ${DEBIAN_RELEASE} main" \
     \
     && useradd --password $5$4GhAqthtiejj19Wp$ahxVnqEs6mGYxhHYkwqVpa2wnZaRvC7ZCZIxgNz/GG9 -m -s /bin/bash builder \
     && echo 'builder ALL=(ALL) NOPASSWD:/usr/bin/apt-get' >> /etc/sudoers \
-    && echo 'PS1="\W> "' >> /home/builder/.bashrc \\
-    && echo 'PATH="/usr/lib/ccache:$PATH"' >> /home/builder/.bashrc \\
-    && echo 'CCACHE_DIR="$HOME/.ccache"' >> /home/builder/.bashrc \\
-    && echo 'CCACHE_REMOTE_STORAGE="file:/workdir/.ccache"' >> /home/builder/.bashrc \\
-    && echo 'CCACHE_SECONDARY_STORAGE="$CCACHE_REMOTE_STORAGE"' >> /home/builder/.bashrc \\
+    && echo 'PS1="\W> "' >> /home/builder/.bashrc \
+    && echo 'PATH="/usr/lib/ccache:$PATH"' >> /home/builder/.bashrc \
+    && echo 'CCACHE_DIR="$HOME/.ccache"' >> /home/builder/.bashrc \
+    && echo 'CCACHE_REMOTE_STORAGE="file:/workdir/.ccache"' >> /home/builder/.bashrc \
+    && echo 'CCACHE_SECONDARY_STORAGE="$CCACHE_REMOTE_STORAGE"' >> /home/builder/.bashrc \
     && echo 'CCACHE_RESHARE="true"' >> /home/builder/.bashrc
 
 COPY entrypoint.sh /
