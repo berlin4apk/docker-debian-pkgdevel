@@ -17,7 +17,7 @@ RUN echo "deb-src http://deb.debian.org/debian ${DEBIAN_RELEASE} main" \
     curl vim sudo "bsdtar|libarchive-tools" \
     wget ccache busybox \
     && rm -rf /var/lib/apt/lists/*
-RUN \
+RUN echo "" \
     && useradd --password $5$4GhAqthtiejj19Wp$ahxVnqEs6mGYxhHYkwqVpa2wnZaRvC7ZCZIxgNz/GG9 -m -s /bin/bash builder \
     && echo 'builder ALL=(ALL) NOPASSWD:/usr/bin/apt-get' >> /etc/sudoers \
     && echo 'PS1="\W> "' >> /home/builder/.bashrc \
