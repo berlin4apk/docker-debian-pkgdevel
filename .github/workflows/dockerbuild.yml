@@ -26,7 +26,8 @@ jobs:
           #- sid
           - bookworm
           - bullseye
-          - buster
+          #- buster
+          - buster-20220801
 
 
     steps:
@@ -94,7 +95,8 @@ jobs:
           build-args: "DEBIAN_RELEASE=${{ matrix.release }}"
           #platforms: linux/amd64,linux/arm64,linux/arm,linux/386
           #platforms: linux/amd64,linux/arm/v5,linux/arm/v7,linux/arm64,linux/386,linux/mips64le,linux/ppc64le,linux/s390x,linux/riscv64
-          platforms: linux/amd64,linux/arm/v5,linux/arm/v7,linux/arm64,linux/386
+          platforms: linux/amd64,linux/arm/v5,linux/arm/v7,linux/arm64,linux/386,linux/mips64le,linux/ppc64le,linux/s390x
+          #platforms: linux/amd64,linux/arm/v7,linux/arm64,linux/386
           push: ${{ github.ref == 'refs/heads/main' }}
           tags: ${{ steps.docker_meta.outputs.tags }}
           labels: ${{ steps.docker_meta.outputs.labels }}
