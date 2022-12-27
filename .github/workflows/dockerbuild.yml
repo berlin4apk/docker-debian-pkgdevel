@@ -27,7 +27,7 @@ jobs:
           - bookworm
           - bullseye
           #- buster
-          - buster-20220801
+          #- buster-20220801
 
 
     steps:
