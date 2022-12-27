@@ -8,13 +8,15 @@ ARG DEBIAN_RELEASE
 # $5$4GhAqthtiejj19Wp$ahxVnqEs6mGYxhHYkwqVpa2wnZaRvC7ZCZIxgNz/GG9
 RUN echo "deb-src http://deb.debian.org/debian ${DEBIAN_RELEASE} main" \
     > /etc/apt/sources.list.d/main-src.list \
+    && echo "deb-src http://deb.debian.org/debian ${DEBIAN_RELEASE} main contrib non-free" \
+    > /etc/apt/sources.list.d/src.list \
     \
     && apt-get update && apt-get install -qqy --no-install-recommends \
     build-essential dpkg-dev fakeroot devscripts equivs lintian quilt \
     curl vim sudo "bsdtar|libarchive-tools" \
     wget ccache busybox \
-    && rm -rf /var/lib/apt/lists/* \
-    \
+    && rm -rf /var/lib/apt/lists/*
+RUN \
     && useradd --password $5$4GhAqthtiejj19Wp$ahxVnqEs6mGYxhHYkwqVpa2wnZaRvC7ZCZIxgNz/GG9 -m -s /bin/bash builder \
     && echo 'builder ALL=(ALL) NOPASSWD:/usr/bin/apt-get' >> /etc/sudoers \
     && echo 'PS1="\W> "' >> /home/builder/.bashrc \
