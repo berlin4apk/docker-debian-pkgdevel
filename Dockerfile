@@ -14,7 +14,7 @@ ARG DEBIAN_RELEASE
 
 RUN echo "" \
     && cp -p /etc/apt/sources.list /etc/apt/sources.list.bak && sed -i 's/main$/main contrib non-free/' /etc/apt/sources.list \
-    && grep '^deb ' /etc/apt/sources.list | sed 's/^deb /deb-src /g' | sudo tee /etc/apt/sources.list.d/deb-src.list \
+    && grep '^deb ' /etc/apt/sources.list | sed 's/^deb /deb-src /g' | tee /etc/apt/sources.list.d/deb-src.list \
     && apt-get update && apt-get install -qqy --no-install-recommends \
     \
     build-essential dpkg-dev fakeroot devscripts equivs lintian quilt \
