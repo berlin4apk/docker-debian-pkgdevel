@@ -44,6 +44,16 @@ jobs:
             type=sha,prefix=${{ matrix.release }}-,format=short
           images: ghcr.io/${{ github.repository_owner }}/debian-pkgdevel
       -
+        name: Extract metadata test
+        id: docker_meta_test
+        uses: docker/metadata-action@v4
+        with:
+          tags: |
+            ${{ matrix.release }}
+            type=schedule,prefix=${{ matrix.release }}-,pattern={{date 'YYYYMMDD'}}
+            type=sha,prefix=${{ matrix.release }}-,format=short
+          images: ghcr.io/${{ github.repository_owner }}/debian-pkgdevel-test
+      -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       -
@@ -57,6 +67,22 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.PAT }}
+      -
+        name: Build and push test bookworm amd64
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: ./Dockerfile
+          #build-args: "DEBIAN_RELEASE=${{ matrix.release }}"
+          build-args: "DEBIAN_RELEASE=bookworm"
+          #platforms: linux/amd64,linux/arm64,linux/arm,linux/386
+          platforms: linux/amd64
+          #push: ${{ github.ref == 'refs/heads/main' }}
+          push: true
+          tags: ${{ steps.docker_meta_test.outputs.tags }}
+          labels: ${{ steps.docker_meta_test.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
       -
         name: Build and push
         uses: docker/build-push-action@v3
