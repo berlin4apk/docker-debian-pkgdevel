@@ -24,6 +24,8 @@ jobs:
           - buster
           - bullseye
           - bookworm
+          - sid
+          - experimental
 
     steps:
       -
