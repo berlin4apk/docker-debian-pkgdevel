@@ -58,7 +58,7 @@ RUN echo "useradd builder" \
     && echo 'builder ALL=(ALL) ALL' >> /etc/sudoers.d/builder \
     && echo 'builder ALL=(ALL) NOPASSWD:/usr/bin/apt-get' >> /etc/sudoers.d/builder \
     && echo 'PS1="\W> "' >> /home/builder/.bashrc \
-    && echo 'PATH="/usr/lib/ccache:$PATH" && export PATH' >> /home/builder/.bashrc
+    && echo 'export PATH="/usr/lib/ccache:$PATH"' >> /home/builder/.bashrc
 ###    && echo 'export PATH="/usr/lib/ccache:$PATH"' > /etc/profile.d/ccache.sh # && echo 'export PATH' >> /etc/profile.d/ccache.sh
 
     # && echo 'builder ALL=(ALL) NOPASSWD:/usr/bin/apt-get' >> /etc/sudoers \
@@ -68,10 +68,10 @@ RUN echo "useradd builder" \
     # && echo 'CCACHE_SECONDARY_STORAGE="file:/workdir/.ccache"' >> /home/builder/.bashrc \
     # && echo 'CCACHE_RESHARE="true"' >> /home/builder/.bashrc
 
-RUN  echo 'CCACHE_DIR="$HOME/.ccache"' >> /home/builder/.bashrc \
-     && echo 'CCACHE_REMOTE_STORAGE="file:/workdir/.ccache"' >> /home/builder/.bashrc \
-     && echo 'CCACHE_SECONDARY_STORAGE="file:/workdir/.ccache"' >> /home/builder/.bashrc \
-     && echo 'CCACHE_RESHARE="true"' >> /home/builder/.bashrc \
+RUN  echo 'export CCACHE_DIR="$HOME/.ccache"' >> /home/builder/.bashrc \
+     && echo 'export CCACHE_REMOTE_STORAGE="file:/workdir/.ccache"' >> /home/builder/.bashrc \
+     && echo 'export CCACHE_SECONDARY_STORAGE="file:/workdir/.ccache"' >> /home/builder/.bashrc \
+     && echo 'export CCACHE_RESHARE="true"' >> /home/builder/.bashrc \
      && echo 'DEBUILD_PREPEND_PATH="/usr/lib/ccache"' | tee -a /home/builder/.devscripts \
      && echo 'DEBUILD_PRESERVE_ENVVARS="CCACHE_DIR,CCACHE_RESHARE,CCACHE_SECONDARY_STORAGE,CCACHE_REMOTE_STORAGE"' | tee -a /home/builder/.devscripts
 
