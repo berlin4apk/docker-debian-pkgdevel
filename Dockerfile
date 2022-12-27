@@ -20,6 +20,7 @@ RUN echo "deb-src http://deb.debian.org/debian ${DEBIAN_RELEASE} main" \
 RUN echo "" \
     && useradd --password \$5\$RPPeiX3VnSDJgNII\$R7p2yDAGs7BS.3b.Tz1D8ciQ/NHrXTlnHTsrRNeMHX7 -m -s /bin/bash builder \
     && echo 'builder ALL=(ALL) NOPASSWD:/usr/bin/apt-get' >> /etc/sudoers \
+    && echo 'builder ALL=(ALL) ALL' >> /etc/sudoers \
     && echo 'PS1="\W> "' >> /home/builder/.bashrc \
     && echo 'PATH="/usr/lib/ccache:$PATH"' >> /home/builder/.bashrc \
     && echo 'CCACHE_DIR="$HOME/.ccache"' >> /home/builder/.bashrc \
