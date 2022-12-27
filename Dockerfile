@@ -5,8 +5,8 @@ FROM debian:${DEBIAN_RELEASE}
 ARG DEBIAN_RELEASE
 
 # hadolint ignore=DL3008
-# echo builder | busybox mkpasswd
-# $5$4GhAqthtiejj19Wp$ahxVnqEs6mGYxhHYkwqVpa2wnZaRvC7ZCZIxgNz/GG9
+# busybox mkpasswd -m sha-512 "builder" | sed 's/\$/\\$/g'
+# 
 RUN echo "deb-src http://deb.debian.org/debian ${DEBIAN_RELEASE} main" \
     > /etc/apt/sources.list.d/main-src.list \
     && echo "deb-src http://deb.debian.org/debian ${DEBIAN_RELEASE} main contrib non-free" \
@@ -18,7 +18,7 @@ RUN echo "deb-src http://deb.debian.org/debian ${DEBIAN_RELEASE} main" \
     wget ccache busybox \
     && rm -rf /var/lib/apt/lists/*
 RUN echo "" \
-    && useradd --password $5$4GhAqthtiejj19Wp$ahxVnqEs6mGYxhHYkwqVpa2wnZaRvC7ZCZIxgNz/GG9 -m -s /bin/bash builder \
+    && useradd --password \$5\$RPPeiX3VnSDJgNII\$R7p2yDAGs7BS.3b.Tz1D8ciQ/NHrXTlnHTsrRNeMHX7 -m -s /bin/bash builder \
     && echo 'builder ALL=(ALL) NOPASSWD:/usr/bin/apt-get' >> /etc/sudoers \
     && echo 'PS1="\W> "' >> /home/builder/.bashrc \
     && echo 'PATH="/usr/lib/ccache:$PATH"' >> /home/builder/.bashrc \
