@@ -40,7 +40,7 @@ jobs:
             ${{ matrix.release }}
             type=schedule,prefix=${{ matrix.release }}-,pattern={{date 'YYYYMMDD'}}
             type=sha,prefix=${{ matrix.release }}-,format=short
-          images: ghcr.io/pgils/debian-pkgdevel
+          images: ghcr.io/${{ github.repository_owner }}/debian-pkgdevel
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -62,7 +62,7 @@ jobs:
           context: .
           file: ./Dockerfile
           build-args: "DEBIAN_RELEASE=${{ matrix.release }}"
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64,linux/arm64,linux/arm,linux/386
           push: ${{ github.ref == 'refs/heads/main' }}
           tags: ${{ steps.docker_meta.outputs.tags }}
           labels: ${{ steps.docker_meta.outputs.labels }}
