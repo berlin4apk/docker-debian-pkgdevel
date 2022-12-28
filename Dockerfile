@@ -28,7 +28,8 @@ RUN echo "build /etc/apt/sources.list.d/deb-src.list, and apt-get install" \
     && apt-get update && apt-get install -qqy --no-install-recommends \
            build-essential dpkg-dev fakeroot devscripts equivs lintian quilt \
            curl vim sudo "bsdtar|libarchive-tools" \
-           wget ccache distcc busybox apt-file net-tools traceroute iproute2 "bind9utils|bind9-dnsutils" debian-keyring redis-tools sbuild pbuilder \
+           wget ccache distcc busybox apt-file net-tools traceroute iproute2 "bind9utils|bind9-dnsutils" debian-keyring redis-tools \
+           sbuild autopkgtest pbuilder \
     && rm -rf /var/lib/apt/lists/*
 
 #RUN cat > /usr/local/etc/ccache.conf << __EOF__
