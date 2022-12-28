@@ -76,8 +76,8 @@ RUN echo "useradd builder" \
 
 RUN echo '# export CCACHE_DIR="$HOME/.ccache"' >> /home/builder/.bashrc \
      && echo '# export CCACHE_REMOTE_STORAGE="file:/workdir/.ccache"' >> /home/builder/.bashrc \
-     && echo '# export CCACHE_REMOTE_STORAGE="export CCACHE_REMOTE_STORAGE="redis://172.17.0.1"' >> /home/builder/.bashrc \
-     && echo 'export CCACHE_REMOTE_STORAGE="export CCACHE_REMOTE_STORAGE="redis://dumm-pw-eechoocath7au5Zoen3oav3A@host.docker.internal"' >> /home/builder/.bashrc \
+     && echo '# export CCACHE_REMOTE_STORAGE="redis://172.17.0.1"' >> /home/builder/.bashrc \
+     && echo 'export CCACHE_REMOTE_STORAGE="redis://dumm-pw-eechoocath7au5Zoen3oav3A@host.docker.internal"' >> /home/builder/.bashrc \
      # && echo 'export CCACHE_SECONDARY_STORAGE="file:/workdir/.ccache"' >> /home/builder/.bashrc \
      && echo 'export CCACHE_RESHARE="true"' >> /home/builder/.bashrc \
      \
