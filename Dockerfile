@@ -28,7 +28,7 @@ RUN echo "build /etc/apt/sources.list.d/deb-src.list, and apt-get install" \
     && apt-get update && apt-get install -qqy --no-install-recommends \
            build-essential dpkg-dev fakeroot devscripts equivs lintian quilt \
            curl vim sudo "bsdtar|libarchive-tools" \
-           wget ccache distcc busybox apt-file net-tools traceroute iproute2 "bind9utils|bind9-dnsutils" debian-keyring redis-tools \
+           wget ccache distcc busybox apt-file net-tools traceroute iproute2 "bind9utils|bind9-dnsutils" debian-keyring redis-tools sbuild \
     && rm -rf /var/lib/apt/lists/*
 
 #RUN cat > /usr/local/etc/ccache.conf << __EOF__
@@ -60,6 +60,7 @@ RUN echo "build /etc/apt/sources.list.d/deb-src.list, and apt-get install" \
 # busybox mkpasswd -m sha-512 "builder" | sed 's/\$/\\$/g'
 RUN echo "useradd builder" \
     && useradd --password \$5\$RPPeiX3VnSDJgNII\$R7p2yDAGs7BS.3b.Tz1D8ciQ/NHrXTlnHTsrRNeMHX7 -m -s /bin/bash builder \
+    && sbuild-adduser builder \
     && echo 'Defaults timestamp_timeout=0' > /etc/sudoers.d/builder \
     && echo 'builder ALL=(ALL) ALL' >> /etc/sudoers.d/builder \
     && echo 'builder ALL=(ALL) NOPASSWD:/usr/bin/apt-get' >> /etc/sudoers.d/builder \
